@@ -1,0 +1,21 @@
+[2019-04-14 20:57:26] [info] Start Program:
+Path:"C:\Users\Korina\source\repos\OOP_lab0506\Debug\OOP_lab0506.exe"
+Arguments:
+Working directory: "C:\Users\Korina\source\repos\OOP_lab0506\OOP_lab0506\"
+Modules: Selected: C:\Users\Korina\source\repos\OOP_lab0506\Debug\OOP_lab0506.exe Excluded: 
+Sources: Selected: C:\Users\Korina\source\repos\OOP_lab0506\OOP_lab0506 Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: Binary C:\Users\Korina\AppData\Local\Temp\acopzucm.y5z 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+
+[2019-04-14 20:57:26] [info] Module: C:\Users\Korina\source\repos\OOP_lab0506\Debug\OOP_lab0506.exe is selected because it matches selected pattern: C:\Users\Korina\source\repos\OOP_lab0506\Debug\OOP_lab0506.exe
+[2019-04-14 20:57:26] [info] ----------------------------------------------------
+[2019-04-14 20:57:26] [info] Coverage binary generated in file: C:\Users\Korina\AppData\Local\Temp\acopzucm.y5z
+[2019-04-14 20:57:26] [info] ----------------------------------------------------
