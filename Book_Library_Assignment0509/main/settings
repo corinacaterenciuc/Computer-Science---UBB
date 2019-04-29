@@ -1,0 +1,5 @@
+repo_type = json
+book_repo_file = books.json
+client_repo_file = clients.json
+rental_repo_file = rentals.json
+ui = console
