@@ -1,0 +1,10 @@
+﻿  Main.c
+  Generating code
+c:\users\korina\source\repos\oop_lab_0305\oop_lab_0305\controller.c(153): warning C4716: 'search_continent': must return a value
+c:\users\korina\source\repos\oop_lab_0305\oop_lab_0305\repository.c(170): warning C4716: 'searchByName': must return a value
+c:\users\korina\source\repos\oop_lab_0305\oop_lab_0305\controller.c(137): warning C4716: 'search_name': must return a value
+  41 of 66 functions (62.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  OOP_Lab_0305.vcxproj -> C:\Users\Korina\source\repos\OOP_Lab_0305\Release\OOP_Lab_0305.exe
