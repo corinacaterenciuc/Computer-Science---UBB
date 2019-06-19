@@ -1,0 +1,15 @@
+﻿  Uic'ing OOP_Seminar07_chat_QtGuiApplication.ui...
+  Rcc'ing OOP_Seminar07_chat_QtGuiApplication.qrc...
+  Moc'ing OOP_Seminar07_chat_QtGuiApplication.h...
+   RCC: Warning: No resources in 'D:\repos\OOP\Seminars_OOP\Seminar07_chat_QtGuiApplication\OOP_Seminar07_chat_QtGuiApplication.qrc'.
+  ChatSession.cpp
+  ChatWindow.cpp
+  main.cpp
+  Observer.cpp
+  OOP_Seminar07_chat_QtGuiApplication.cpp
+  Subject.cpp
+  UserMessage.cpp
+  moc_ChatWindow.cpp
+  qrc_OOP_Seminar07_chat_QtGuiApplication.cpp
+  moc_OOP_Seminar07_chat_QtGuiApplication.cpp
+  OOP_Seminar07_chat_QtGuiApplication.vcxproj -> D:\repos\OOP\Seminars_OOP\Seminar07_chat_QtGuiApplication\x64\Debug\OOP_Seminar07_chat_QtGuiApplication.exe
