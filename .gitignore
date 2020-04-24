@@ -15,8 +15,8 @@ node_modules
 *.iml
 *.ipr
 *.iws
-.idea
-build
+*/.idea
+*/build
 out
 generated
 MANIFEST.MF
@@ -24,11 +24,11 @@ MANIFEST.MF
 #gradle
 **/gradle
 **/.gradle
-**/gradlew
+*/gradlew
 **/build
 *.gradle
 **/gradlew*
-
+**/gradle/*
 #text repos
 data
 
