@@ -25,8 +25,21 @@ MANIFEST.MF
 **/gradle
 **/.gradle
 **/gradlew
+**/build
+*.gradle
+**/gradlew*
 
 #text repos
 data
 
 *.db
+
+# Static files
+*.jpg
+*.png
+*/dataset
+
+# Visual Studio
+**/.vs/
+**/bin/
+**/obj/
