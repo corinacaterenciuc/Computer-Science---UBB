@@ -5,18 +5,22 @@ import common.services.ReportingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+//import org.springframework.context.annotation.ComponentScan;
+//import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
 import server.services.ClientEntityServiceImplementation;
 import server.services.MovieEntityServiceImplementation;
 import server.services.RentalEntityServiceImplementation;
 import server.services.ReportingServiceImplementation;
 
-@Configuration
-@ComponentScan(basePackages = {"common", "server"})
-@EnableAutoConfiguration
+//@Configuration
+//@ComponentScan(basePackages = {"common", "server"})
+//@EnableAutoConfiguration
+@SpringBootApplication(scanBasePackages = {"common", "server"})
+@EntityScan("common.entities")
 public class Server
 {
     private final MovieEntityServiceImplementation movieService;

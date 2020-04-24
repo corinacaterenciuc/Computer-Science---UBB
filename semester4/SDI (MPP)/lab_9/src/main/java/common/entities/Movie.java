@@ -1,7 +1,9 @@
 package common.entities;
 
+import javax.persistence.Entity;
 import java.io.Serializable;
 
+@Entity
 public class Movie extends BaseEntity<Long> implements Serializable
 {
     private String title;

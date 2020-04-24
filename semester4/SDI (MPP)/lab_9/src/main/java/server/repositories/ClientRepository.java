@@ -1,20 +1,23 @@
 package server.repositories;
 
-import org.springframework.stereotype.Repository;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+//import org.springframework.stereotype.Repository;
+//
+//import java.sql.Connection;
+//import java.sql.PreparedStatement;
+//import java.sql.SQLException;
 
 import common.entities.Client;
-import server.repositories.base.DBRepository;
-import server.repositories.row_mappers.ClientRowMapper;
+//import server.repositories.base.DBRepository;
+//import server.repositories.row_mappers.ClientRowMapper;
+import org.springFramework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
+//import javax.sql.DataSource;
 
 
 @Repository("clientRepository")
-public class ClientRepository extends DBRepository<Client>
+public class ClientRepository extends JpaRepository<Client, Long> {}
+        /*DBRepository<Client>
 {
     public ClientRepository()
     {
@@ -74,3 +77,4 @@ public class ClientRepository extends DBRepository<Client>
         super.setDataSource(dataSource);
     }
 }
+*/

@@ -1,18 +1,21 @@
 package server.repositories;
 
-import org.springframework.stereotype.Repository;
-
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+//import org.springframework.stereotype.Repository;
+//
+//import java.sql.Connection;
+//import java.sql.Date;
+//import java.sql.PreparedStatement;
+//import java.sql.SQLException;
 
 import common.entities.Rental;
-import server.repositories.base.DBRepository;
-import server.repositories.row_mappers.RentalRowMapper;
+//import server.repositories.base.DBRepository;
+//import server.repositories.row_mappers.RentalRowMapper;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 @Repository("rentalRepository")
-public class RentalRepository extends DBRepository<Rental>
+public class RentalRepository extends JpaRepository<Rental, Long> {}
+        /*DBRepository<Rental>
 {
     public RentalRepository()
     {
@@ -75,3 +78,4 @@ public class RentalRepository extends DBRepository<Rental>
         return statement;
     }
 }
+*/

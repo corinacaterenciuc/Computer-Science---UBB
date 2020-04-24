@@ -1,17 +1,20 @@
 package server.repositories;
 
-import org.springframework.stereotype.Repository;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+//import org.springframework.stereotype.Repository;
+//
+//import java.sql.Connection;
+//import java.sql.PreparedStatement;
+//import java.sql.SQLException;
 
 import common.entities.Movie;
-import server.repositories.base.DBRepository;
-import server.repositories.row_mappers.MovieRowMapper;
+//import server.repositories.base.DBRepository;
+//import server.repositories.row_mappers.MovieRowMapper;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 @Repository("movieRepository")
-public class MovieRepository extends DBRepository<Movie>
+public class MovieRepository extends JpaRepository<Movie, Long> {}
+        /*DBRepository<Movie>
 {
     public MovieRepository()
     {
@@ -68,3 +71,5 @@ public class MovieRepository extends DBRepository<Movie>
         return statement;
     }
 }
+*/
+

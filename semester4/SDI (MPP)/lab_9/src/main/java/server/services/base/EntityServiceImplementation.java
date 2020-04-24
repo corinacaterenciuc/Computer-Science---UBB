@@ -6,7 +6,10 @@ import common.services.behaviours.filter.FilterBehaviour;
 import common.services.behaviours.filter.FilterStrategy;
 import common.services.behaviours.sort.SortBehaviour;
 import common.services.behaviours.sort.SortStrategy;
-import server.repositories.base.Repository;
+//import server.repositories.base.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
 
 public abstract class EntityServiceImplementation<T extends BaseEntity<Long>> implements EntityService<T>
 {
@@ -26,7 +29,7 @@ public abstract class EntityServiceImplementation<T extends BaseEntity<Long>> im
     @Override
     public T addEntity(T entity)
     {
-        return this.repository.save(entity).orElseThrow(RuntimeException::new);
+        return this.repository.save(entity);
     }
 
     @Override
@@ -38,13 +41,18 @@ public abstract class EntityServiceImplementation<T extends BaseEntity<Long>> im
     @Override
     public T deleteEntity(Long id)
     {
-        return this.repository.delete(id).orElseThrow(RuntimeException::new);
+        Optional<T> oldEntity = repository.findById(id);
+        repository.deleteById(id);
+        return oldEntity.orElseThrow(RuntimeException::new);
     }
 
     @Override
     public T updateEntity(T updatedEntity)
     {
-        return this.repository.update(updatedEntity).orElseThrow(RuntimeException::new);
+        T oldEntity = repository.findById(updatedEntity.getId()).orElseThrow(RuntimeException::new);
+        repository.delete(oldEntity);
+        repository.save(updatedEntity);
+        return oldEntity;
     }
 
     @Override

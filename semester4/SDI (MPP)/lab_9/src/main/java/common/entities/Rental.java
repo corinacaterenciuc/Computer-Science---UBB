@@ -1,8 +1,10 @@
 package common.entities;
 
+import javax.persistence.Entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+@Entity
 public class Rental extends BaseEntity<Long> implements Serializable
 {
     private Long clientID;

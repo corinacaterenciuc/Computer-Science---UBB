@@ -3,9 +3,15 @@ package server.services;
 import common.entities.*;
 import common.services.ReportingService;
 import javafx.util.Pair;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import server.repositories.base.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+//import server.repositories.base.Repository;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -16,14 +22,18 @@ import java.util.stream.StreamSupport;
 @Component
 public class ReportingServiceImplementation implements ReportingService
 {
-    private final Repository<Long, Rental> rentalRepository;
+    private final JpaRepository<Rental, Long> rentalRepository;
 
-    private final Repository<Long, Client> clientRepository;
+    private final JpaRepository<Client, Long> clientRepository;
 
-    private final Repository<Long, Movie> movieRepository;
+    private final JpaRepository<Movie, Long> movieRepository;
+
+    private final static Logger logger = LoggerFactory.getLogger(ReportingServiceImplementation.class);
 
     @Autowired
-    public ReportingServiceImplementation(Repository<Long, Client> clientRepository, Repository<Long, Movie> movieRepository, Repository<Long, Rental> rentalRepository)
+    public ReportingServiceImplementation(JpaRepository<Client, Long> clientRepository,
+                                          JpaRepository<Movie, Long> movieRepository,
+                                          JpaRepository<Rental, Long> rentalRepository)
     {
         this.rentalRepository = rentalRepository;
         this.clientRepository = clientRepository;
