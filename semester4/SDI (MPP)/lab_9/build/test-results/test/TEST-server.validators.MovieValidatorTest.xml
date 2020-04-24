@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="server.validators.MovieValidatorTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-04-05T19:43:44" hostname="DESKTOP-C13D9KE" time="0.028">
+  <properties/>
+  <testcase name="testEmptyTitle" classname="server.validators.MovieValidatorTest" time="0.0"/>
+  <testcase name="testNullAttribute" classname="server.validators.MovieValidatorTest" time="0.0"/>
+  <testcase name="testOkEntity" classname="server.validators.MovieValidatorTest" time="0.0"/>
+  <testcase name="testYearTooSmall" classname="server.validators.MovieValidatorTest" time="0.027"/>
+  <testcase name="testYearTooBig" classname="server.validators.MovieValidatorTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

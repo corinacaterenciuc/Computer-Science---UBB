@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="common.entities.MovieTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-04-05T19:43:43" hostname="DESKTOP-C13D9KE" time="0.005">
+  <properties/>
+  <testcase name="testGetGenre" classname="common.entities.MovieTest" time="0.001"/>
+  <testcase name="testGetTitle" classname="common.entities.MovieTest" time="0.0"/>
+  <testcase name="getSetYear" classname="common.entities.MovieTest" time="0.0"/>
+  <testcase name="getSetGenre" classname="common.entities.MovieTest" time="0.0"/>
+  <testcase name="testGetYEar" classname="common.entities.MovieTest" time="0.0"/>
+  <testcase name="testSetTitle" classname="common.entities.MovieTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

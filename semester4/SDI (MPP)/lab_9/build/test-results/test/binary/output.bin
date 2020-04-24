@@ -1,0 +1,61 @@
+’22:43:43.718 [Test worker] INFO org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory - Starting embedded database: url='jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+Å22:43:43.740 [Test worker] DEBUG org.springframework.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+ƒ22:43:43.741 [Test worker] DEBUG org.springframework.jdbc.datasource.SimpleDriverDataSource - Creating new JDBC Driver Connection to [jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false]
+†22:43:43.978 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - Executing SQL script from class path resource [sql_scripts/schema.sql]
+ô22:43:43.991 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 0 returned as update count for SQL: drop table if exists RENTAL
+ò22:43:43.992 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 0 returned as update count for SQL: drop table if exists MOVIE
+ô22:43:43.992 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 0 returned as update count for SQL: drop table if exists CLIENT
+Ë22:43:44.015 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 0 returned as update count for SQL: create table CLIENT ( id identity primary key, name varchar(100) not null, address varchar(100) not null )
+°22:43:44.020 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 0 returned as update count for SQL: create table MOVIE ( id identity primary key, title varchar(100) not null, genre enum('comedy', 'action', 'thriller', 'documentary', 'horror') not null, year int )
+ã22:43:44.061 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 0 returned as update count for SQL: create table RENTAL ( id identity primary key, client_id bigint not null, movie_id bigint not null, start_date date not null, end_date date, foreign key (client_id) references client(id) on delete cascade, foreign key (movie_id) references movie(id) on delete cascade )
+©22:43:44.061 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - Executed SQL script from class path resource [sql_scripts/schema.sql] in 81 ms.
+Ø22:43:44.061 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - Executing SQL script from class path resource [test_sql_scripts/test_client_data.sql]
+Ω22:43:44.070 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 1 returned as update count for SQL: insert into CLIENT (ID, NAME, ADDRESS) VALUES ( 1, 'n1', 'a1' )
+Ω22:43:44.071 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 1 returned as update count for SQL: insert into CLIENT (ID, NAME, ADDRESS) VALUES ( 2, 'n2', 'a2' )
+∏22:43:44.071 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - Executed SQL script from class path resource [test_sql_scripts/test_client_data.sql] in 10 ms.
+l22:43:44.094 [Test worker] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL query
+î22:43:44.096 [Test worker] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT * FROM CLIENT WHERE id = ?]
+Å22:43:44.097 [Test worker] DEBUG org.springframework.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+ƒ22:43:44.097 [Test worker] DEBUG org.springframework.jdbc.datasource.SimpleDriverDataSource - Creating new JDBC Driver Connection to [jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false]
+’22:43:44.138 [Test worker] INFO org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory - Starting embedded database: url='jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+Å22:43:44.138 [Test worker] DEBUG org.springframework.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+ƒ22:43:44.138 [Test worker] DEBUG org.springframework.jdbc.datasource.SimpleDriverDataSource - Creating new JDBC Driver Connection to [jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false]
+†22:43:44.139 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - Executing SQL script from class path resource [sql_scripts/schema.sql]
+ô22:43:44.149 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 0 returned as update count for SQL: drop table if exists RENTAL
+ò22:43:44.151 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 0 returned as update count for SQL: drop table if exists MOVIE
+ô22:43:44.165 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 0 returned as update count for SQL: drop table if exists CLIENT
+Ë22:43:44.167 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 0 returned as update count for SQL: create table CLIENT ( id identity primary key, name varchar(100) not null, address varchar(100) not null )
+°22:43:44.170 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 0 returned as update count for SQL: create table MOVIE ( id identity primary key, title varchar(100) not null, genre enum('comedy', 'action', 'thriller', 'documentary', 'horror') not null, year int )
+ã22:43:44.179 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 0 returned as update count for SQL: create table RENTAL ( id identity primary key, client_id bigint not null, movie_id bigint not null, start_date date not null, end_date date, foreign key (client_id) references client(id) on delete cascade, foreign key (movie_id) references movie(id) on delete cascade )
+©22:43:44.179 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - Executed SQL script from class path resource [sql_scripts/schema.sql] in 40 ms.
+Ø22:43:44.179 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - Executing SQL script from class path resource [test_sql_scripts/test_client_data.sql]
+Ω22:43:44.181 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 1 returned as update count for SQL: insert into CLIENT (ID, NAME, ADDRESS) VALUES ( 1, 'n1', 'a1' )
+Ω22:43:44.181 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 1 returned as update count for SQL: insert into CLIENT (ID, NAME, ADDRESS) VALUES ( 2, 'n2', 'a2' )
+∑22:43:44.181 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - Executed SQL script from class path resource [test_sql_scripts/test_client_data.sql] in 2 ms.
+l22:43:44.181 [Test worker] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL query
+î22:43:44.181 [Test worker] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT * FROM CLIENT WHERE id = ?]
+Å22:43:44.181 [Test worker] DEBUG org.springframework.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+ƒ22:43:44.181 [Test worker] DEBUG org.springframework.jdbc.datasource.SimpleDriverDataSource - Creating new JDBC Driver Connection to [jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false]
+’22:43:44.184 [Test worker] INFO org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory - Starting embedded database: url='jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+Å22:43:44.184 [Test worker] DEBUG org.springframework.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+ƒ22:43:44.184 [Test worker] DEBUG org.springframework.jdbc.datasource.SimpleDriverDataSource - Creating new JDBC Driver Connection to [jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false]
+†22:43:44.184 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - Executing SQL script from class path resource [sql_scripts/schema.sql]
+ô22:43:44.189 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 0 returned as update count for SQL: drop table if exists RENTAL
+ò22:43:44.190 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 0 returned as update count for SQL: drop table if exists MOVIE
+ô22:43:44.191 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 0 returned as update count for SQL: drop table if exists CLIENT
+Ë22:43:44.192 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 0 returned as update count for SQL: create table CLIENT ( id identity primary key, name varchar(100) not null, address varchar(100) not null )
+°22:43:44.194 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 0 returned as update count for SQL: create table MOVIE ( id identity primary key, title varchar(100) not null, genre enum('comedy', 'action', 'thriller', 'documentary', 'horror') not null, year int )
+ã22:43:44.201 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 0 returned as update count for SQL: create table RENTAL ( id identity primary key, client_id bigint not null, movie_id bigint not null, start_date date not null, end_date date, foreign key (client_id) references client(id) on delete cascade, foreign key (movie_id) references movie(id) on delete cascade )
+©22:43:44.201 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - Executed SQL script from class path resource [sql_scripts/schema.sql] in 17 ms.
+Ø22:43:44.201 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - Executing SQL script from class path resource [test_sql_scripts/test_client_data.sql]
+Ω22:43:44.203 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 1 returned as update count for SQL: insert into CLIENT (ID, NAME, ADDRESS) VALUES ( 1, 'n1', 'a1' )
+Ω22:43:44.204 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - 1 returned as update count for SQL: insert into CLIENT (ID, NAME, ADDRESS) VALUES ( 2, 'n2', 'a2' )
+∑22:43:44.204 [Test worker] DEBUG org.springframework.jdbc.datasource.init.ScriptUtils - Executed SQL script from class path resource [test_sql_scripts/test_client_data.sql] in 3 ms.
+Å22:43:44.205 [Test worker] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing SQL update and returning generated keys
+p22:43:44.208 [Test worker] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL statement
+Å22:43:44.208 [Test worker] DEBUG org.springframework.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+ƒ22:43:44.208 [Test worker] DEBUG org.springframework.jdbc.datasource.SimpleDriverDataSource - Creating new JDBC Driver Connection to [jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false]
+l22:43:44.227 [Test worker] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL query
+î22:43:44.227 [Test worker] DEBUG org.springframework.jdbc.core.JdbcTemplate - Executing prepared SQL statement [SELECT * FROM CLIENT WHERE id = ?]
+Å22:43:44.227 [Test worker] DEBUG org.springframework.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+ƒ22:43:44.227 [Test worker] DEBUG org.springframework.jdbc.datasource.SimpleDriverDataSource - Creating new JDBC Driver Connection to [jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false]
