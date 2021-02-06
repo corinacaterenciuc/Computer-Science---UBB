@@ -1,1 +1,0 @@
-# ubb-cs-vr--ray-tracer
