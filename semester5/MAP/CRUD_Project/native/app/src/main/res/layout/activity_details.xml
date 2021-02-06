@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".Details">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="86dp">
+
+            <TextView
+                android:id="@+id/textView_titleActivity"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Title:"
+                android:textAlignment="center"
+                android:background="@drawable/round_pink"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:layout_margin="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.23"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.509" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/divider_up_detail"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/colorPrimaryMore" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="491dp">
+
+            <LinearLayout
+                android:layout_width="391dp"
+                android:layout_height="489dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="187dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Type:"
+                            android:layout_marginStart="10dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/textView_completeType"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="example type"
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:background="@drawable/round_pink"
+                            android:layout_margin="10dp"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="187dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:id="@+id/textView_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Date:"
+                            android:layout_marginStart="10dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/textView_completeDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="example date"
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:background="@drawable/round_pink"
+                            android:layout_margin="10dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="187dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView_startTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Start time:"
+                            android:layout_marginStart="10dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/textView_completeStartTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="example start"
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:background="@drawable/round_pink"
+                            android:layout_margin="10dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="187dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:id="@+id/textView_duration"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Duration"
+                            android:layout_marginStart="10dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/textView_completeDurantion"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="example duration"
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:background="@drawable/round_pink"
+                            android:layout_margin="10dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="187dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:id="@+id/textView_intencity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Intencity:"
+                            android:layout_marginStart="10dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/textView_completeIntencity"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="example intensity"
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:background="@drawable/round_pink"
+                            android:layout_margin="10dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="187dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:id="@+id/textView_distance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Distance:"
+                            android:layout_marginStart="10dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/textView_completeDistance"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="example distance"
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:background="@drawable/round_pink"
+                            android:layout_margin="10dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp">
+
+                    <TextView
+                        android:id="@+id/textView_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Description:"
+                        android:layout_marginStart="10dp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/textView_completeDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="example description"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:background="@drawable/round_pink"
+                        android:layout_margin="10dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/divider_down_detail"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/colorPrimaryMore" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button_back_detail"
+                android:layout_width="123dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:background="@color/colorAccent"
+                android:text="BACK"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button_edit_detail"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:text="EDIT"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_delete_detail"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/button_back_detail"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/colorAccent"/>
+
+            <Button
+                android:id="@+id/button_delete_detail"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:background="@color/colorAccent"
+                android:text="DELETE"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

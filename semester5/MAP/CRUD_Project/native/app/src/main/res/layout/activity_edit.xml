@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="86dp">
+
+            <EditText
+                android:id="@+id/editText_titleActivity"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Title:"
+                android:textAlignment="center"
+                android:background="@drawable/round_white"
+                android:textSize="25sp"
+                android:layout_margin="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.23"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.509" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/divider_up_edit"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/colorPrimaryMore" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="491dp">
+
+            <LinearLayout
+                android:layout_width="391dp"
+                android:layout_height="489dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="187dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Type:"
+                            android:layout_marginStart="10dp"
+                            android:textStyle="bold"/>
+
+                        <EditText
+                            android:id="@+id/editText_completeType"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="example type"
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:background="@drawable/round_white"
+                            android:layout_margin="10dp"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="187dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:id="@+id/textView_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Date:"
+                            android:layout_marginStart="10dp"
+                            android:textStyle="bold"/>
+
+                        <EditText
+                            android:id="@+id/editText_completeDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="example date"
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:background="@drawable/round_white"
+                            android:layout_margin="10dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="187dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView_startTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Start time:"
+                            android:layout_marginStart="10dp"
+                            android:textStyle="bold"/>
+
+                        <EditText
+                            android:id="@+id/editText_completeStarTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="example start"
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:background="@drawable/round_white"
+                            android:layout_margin="10dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="187dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:id="@+id/textView_duration"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Duration"
+                            android:layout_marginStart="10dp"
+                            android:textStyle="bold"/>
+
+                        <EditText
+                            android:id="@+id/editText_completeDuration"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="example duration"
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:background="@drawable/round_white"
+                            android:layout_margin="10dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="187dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:id="@+id/textView_intensity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Intensity:"
+                            android:layout_marginStart="10dp"
+                            android:textStyle="bold"/>
+
+                        <EditText
+                            android:id="@+id/editText_completeIntensity"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="example intensity"
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:background="@drawable/round_white"
+                            android:layout_margin="10dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="187dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:id="@+id/textView_distance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Distance:"
+                            android:layout_marginStart="10dp"
+                            android:textStyle="bold"/>
+
+                        <EditText
+                            android:id="@+id/editText_completeDistance"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="example distance"
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:background="@drawable/round_white"
+                            android:layout_margin="10dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp">
+
+                    <TextView
+                        android:id="@+id/textView_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Description:"
+                        android:layout_marginStart="10dp"
+                        android:textStyle="bold"/>
+
+                    <EditText
+                        android:id="@+id/editText_completeDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="example description"
+                        android:gravity="center_horizontal"
+                        android:background="@drawable/round_white"
+                        android:layout_margin="10dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/divider_down_edit"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/colorPrimaryMore" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button_save_edit"
+                android:layout_width="150dp"
+                android:layout_height="70dp"
+                android:layout_margin="20dp"
+                android:background="@color/colorAccent"
+                android:text="SAVE"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button_cancel_edit"
+                android:layout_width="150dp"
+                android:layout_height="70dp"
+                android:layout_margin="20dp"
+                android:background="@color/colorAccent"
+                android:text="CANCEL"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
