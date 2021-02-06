@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f61568514c19624ea737d70a9c3fdfa, type: 3}
+  m_Name: SBS Terra 2
+  m_EditorClassIdentifier: 
+  sBSSkybox:
+    baseSphere:
+      showBaseSphereSettings: 0
+      color: {r: 0.36672303, g: 0.54181194, b: 0.6320754, a: 1}
+      skyType: 1
+    starSphere:
+      showStarSphereSettings: 0
+      showStars: 0
+      starTexture: {fileID: 2800000, guid: 148420f5c3572a645a254bb8a8eb8b14, type: 3}
+      colorMask: {fileID: 2800000, guid: ebf1faeb73b48284f8ec99a560d12fc4, type: 3}
+      starAmount: 2.5
+      colorStars: 0
+      colorTint: {r: 1, g: 1, b: 1, a: 1}
+    sparkleSphere:
+      showSparkle: 0
+      sparkleTexture: {fileID: 2800000, guid: 93f0b5ff9a468bd4ba74560d41f9cee0, type: 3}
+      colorMask: {fileID: 2800000, guid: ebf1faeb73b48284f8ec99a560d12fc4, type: 3}
+      sparkleAmount: 2.5
+      colorSparkles: 0
+      colorTint: {r: 1, g: 1, b: 1, a: 1}
+    showNebulaeSettings: 0
+    nebulae: []
+    showSunSettings: 0
+    suns:
+    - showSun: 1
+      sunTexture: {fileID: 2800000, guid: bfbf41d9ffacaa34c8bd2f6f29cb1e5b, type: 3}
+      mainColor: {r: 1, g: 1, b: 1, a: 1}
+      rayColor: {r: 1, g: 0.82183397, b: 0.2971698, a: 1}
+      rayDampening: 1
+      sunScale: 0.2
+      angle: 30
+      azimuth: -154
+      rotation: 0
+      showGlow: 1
+      glowColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+      nimbusColor: {r: 0.6792453, g: 0.54291815, b: 0.49021003, a: 1}
+      glowDampening: 1.5
+      glowScaleX: 1
+      glowScaleY: 1
+      glowRotation: 0
+      addDirectionalLight: 0
+      lightColor: {r: 1, g: 1, b: 1, a: 1}
+      lightIntensity: 1
+    showPlanetSettings: 0
+    planets: []
+    showHorizonSettings: 0
+    horizon:
+      showHorizon: 1
+      atmosphericDensity: 0.43
+      horizonHeight: 0.7
+      horizonColor: {r: 0.63105196, g: 0.77706057, b: 0.8207547, a: 1}
+      groundHeight: 0
+      groundColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    showCloudSettings: 0
+    cloudLayers:
+    - showClouds: 1
+      cloudTexture: {fileID: 2800000, guid: 55f3d8d1f9a7e9a43a637210af487a63, type: 3}
+      cloudHeight: 0.2
+      primaryColor: {r: 0.73135453, g: 0.87144256, b: 0.8962264, a: 1}
+      secondaryColor: {r: 1, g: 1, b: 1, a: 1}
+      normalStrength: 1.3
+      cloudCutoff: 0.22
+      softness: 1.18
+      colorGradient: 2.5
+      tiling: 15
+      rotation: 0
+      stretch: 1
+      taperPower: 0.583
+      useEdgeMask: 1
+      edgeStart: 0.54
+      edgeStrength: 6
+      rotateEdge: -51
+      cloudMask: {fileID: 2800000, guid: 5392aa45661f03f46a24c24bc341e759, type: 3}
+      maskTiling: 15
+      maskStrength: 2.6
+      maskOffset: {x: 0, y: 0}
+    - showClouds: 1
+      cloudTexture: {fileID: 2800000, guid: 902b6ffb9b66d244fb8065e5c220d068, type: 3}
+      cloudHeight: 0.757
+      primaryColor: {r: 0.7407885, g: 0.8619222, b: 0.8773585, a: 1}
+      secondaryColor: {r: 1, g: 1, b: 1, a: 1}
+      normalStrength: 10
+      cloudCutoff: 0.44
+      softness: 1.08
+      colorGradient: 2.5
+      tiling: 7.5
+      rotation: 0
+      stretch: 1
+      taperPower: 1
+      useEdgeMask: 0
+      edgeStart: 0
+      edgeStrength: 1
+      rotateEdge: 0
+      cloudMask: {fileID: 2800000, guid: 8aa8e94b632ff294794dfe81c1afce7e, type: 3}
+      maskTiling: 10.1
+      maskStrength: 1.6
+      maskOffset: {x: 0, y: 0}
+    showTerrainSettings: 0
+    terrain:
+      showTerrain: 0
+      terrainLevel: -0.02
+      terrainRotation: 0
+      heightMap: {fileID: 2800000, guid: aa7c627592625794186bed39f34d3432, type: 3}
+      heightMapTiling: 1
+      displacement: 4
+      normalStrength: 80
+      startDistance: 0.4
+      startStrength: 1.5
+      detailNormals: {fileID: 2800000, guid: 0dc7ba8b7fe9fff49892e188400d1bab, type: 3}
+      detailNormalTiling: 10
+      detailNormalStrength: 5
+      terrainMask: 0
+      maskRotation: 0
+      enableScattering: 1
+      scatteringColor: {r: 1, g: 1, b: 1, a: 1}
+      scatteringSharpness: 0.7
+      enableFog: 0
+      fogColor: {r: 1, g: 1, b: 1, a: 1}
+      fogStart: 0.5
+      fogFalloff: 1.5
+      highFogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+      fogHeightThreshold: 1.5
+      fogHeightFalloff: 1
+      textureTiling: 50
+      valleyTexture: {fileID: 2800000, guid: 3238df00fd2165f40890e6fe94f0d3f8, type: 3}
+      desaturateValleyTexture: 0
+      valleyTextureColor: {r: 1, g: 1, b: 1, a: 1}
+      midLevelTexture: {fileID: 2800000, guid: 75f7728d81c4e15499dad4027b395d59, type: 3}
+      desaturateMidLevelTexture: 0
+      midLevelTextureColor: {r: 1, g: 1, b: 1, a: 1}
+      midLevel: 0.1
+      midLevelFalloff: 5
+      peakTexture: {fileID: 2800000, guid: 1d76776345e7ef44fb8cb79d54ea8d3c, type: 3}
+      desaturatePeakTexture: 0
+      peakTextureColor: {r: 1, g: 1, b: 1, a: 1}
+      peakLevel: 1
+      peakLevelFalloff: 5
+      slopeTexture: {fileID: 2800000, guid: a1d1b3a69a0b14244a1b31ac6ef9d04b, type: 3}
+      desaturateSlopeTexture: 0
+      slopeTextureColor: {r: 1, g: 1, b: 1, a: 1}
+      slopeTextureFalloff: 5
+      slopeCutoff: 0.25
+      noiseTiling: 200
+      noiseFalloff: 4
+  destroy: 0
+  initialize: 0
