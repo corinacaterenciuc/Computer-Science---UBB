@@ -1,0 +1,87 @@
+%option noyywrap
+
+INTEGER		(0|([-]?|[+]?)[1-9][0-9]*)
+STRING      \"([a-zA-Z0-9 ])*\"
+CHAR        \'([a-zA-Z0-9])\'
+CONST		{STRING}|{CHAR}|{INTEGER}
+IDENTIFIER 		([a-zA-Z]|_[a-zA-Z])([_a-zA-Z]|[0-9])*
+
+%%
+
+"start"	{printf( "Reserved word: %s\n", yytext ); }
+"finish"	{printf( "Reserved word: %s\n", yytext ); }
+"if"    {printf( "Reserved word: %s\n", yytext ); }
+"else"    {printf( "Reserved word: %s\n", yytext ); }
+"endif"    {printf( "Reserved word: %s\n", yytext ); }
+"for"    {printf( "Reserved word: %s\n", yytext ); }
+"from"    {printf( "Reserved word: %s\n", yytext ); }
+"to"    {printf( "Reserved word: %s\n", yytext );}
+"do"    {printf( "Reserved word: %s\n", yytext ); }
+"endfor"    {printf( "Reserved word: %s\n", yytext ); }
+"while"    {printf( "Reserved word: %s\n", yytext ); }
+"endwhile"    {printf( "Reserved word: %s\n", yytext );  }
+"get"    {printf( "Reserved word: %s\n", yytext ); }
+"print"    {printf( "Reserved word: %s\n", yytext ); }
+"int"    {printf( "Reserved word: %s\n", yytext ); }
+"string"    {printf( "Reserved word: %s\n", yytext ); }
+"vector"    {printf( "Reserved word: %s\n", yytext ); }
+"const"    {printf( "Reserved word: %s\n", yytext ); }
+"bool"    {printf( "Reserved word: %s\n", yytext ); }
+"char"    {printf( "Reserved word: %s\n", yytext ); }
+"real"    {printf( "Reserved word: %s\n", yytext ); }
+"sqrt"    {printf( "Reserved word: %s\n", yytext ); }
+
+{IDENTIFIER}	{printf( "Identifier: %s\n", yytext ); }
+
+{CONST}	{printf( "Constant: %s\n", yytext ); }
+
+":"	{printf( "Separator: %s\n", yytext ); }
+";"	{printf( "Separator: %s\n", yytext ); }
+","	{printf( "Separator: %s\n", yytext ); }
+"."	{printf( "Separator: %s\n", yytext ); }
+"("	{printf( "Separator: %s\n", yytext ); }
+")"	{printf( "Separator: %s\n", yytext ); }
+"["	{printf( "Separator: %s\n", yytext ); }
+"]"	{printf( "Separator: %s\n", yytext ); }
+"{"	{printf( "Separator: %s\n", yytext ); }
+"}"	{printf( "Separator: %s\n", yytext ); }
+"+"	{printf( "Operator: %s\n", yytext ); }
+"-"	{printf( "Operator: %s\n", yytext ); }
+"*"	{printf( "Operator: %s\n", yytext ); }
+"/"	{printf( "Operator: %s\n", yytext ); }
+"<"	{printf( "Operator: %s\n", yytext ); }
+">"	{printf( "Operator: %s\n", yytext ); }
+"<="	{printf( "Operator: %s\n", yytext ); }
+">="	{printf( "Operator: %s\n", yytext ); }
+"!="	{printf( "Operator: %s\n", yytext ); }
+"="	{printf( "Operator: %s\n", yytext ); }
+"=="	{printf( "Operator: %s\n", yytext ); }
+"^"	{printf( "Operator: %s\n", yytext ); }
+"|"	{printf( "Operator: %s\n", yytext ); }
+"&"	{printf( "Operator: %s\n", yytext ); }
+"!"	{printf( "Operator: %s\n", yytext ); }
+
+"{"[^}\n]*"}"	/* elimina comentarii */ {}
+
+[ \t]+	/* elimina spatii */  	{}
+
+[\n]+   {}
+
+(($|&|[0-9])[a-zA-Z]|_[a-zA-Z])([_a-zA-Z]|[0-9])*  { printf("Error - BAD IDENTIFIER: %s\n", yytext); }
+
+\"([a-zA-Z0-9 ])*   { printf("Error - BAD STRING: %s\n", yytext); }
+
+%%
+
+int main( argc, argv )
+int argc;
+char **argv;
+{
+	++argv, --argc;	/* skip over program name */
+	if ( argc > 0 )
+		yyin = fopen( argv[0], "r" );
+	else
+		yyin = stdin;
+	yylex();
+}
+

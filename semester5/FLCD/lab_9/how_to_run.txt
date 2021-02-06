@@ -1,0 +1,6 @@
+flex lang2.lxi
+yacc -d parser.y
+cc lex.yy.c y.tab.c -o result -lfl
+./result  < your_program.txt
+
+// Ubuntu saved me a big headache!

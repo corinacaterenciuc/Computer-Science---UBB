@@ -1,0 +1,81 @@
+%{
+#include <math.h>
+#include <stdio.h>
+#include "y.tab.h"
+%}
+%option noyywrap
+
+NR          (0|[1-9][0-9]*)
+INTEGER		(0|([-]?|[+]?)[1-9][0-9]*)
+STRING      \"([a-zA-Z0-9 ])*\"
+CHAR        \'([a-zA-Z0-9])\'
+CONST		{STRING}|{CHAR}|{INTEGER}
+IDENTIFIER 		([a-zA-Z]|_[a-zA-Z])([_a-zA-Z]|[0-9])*
+
+%%
+
+
+"start"	{printf( "Reserved word: %s\n", yytext ); return START ; }
+"finish"	{printf( "Reserved word: %s\n", yytext ); return FINISH ;}
+"if"    {printf( "Reserved word: %s\n", yytext ); return IF ;}
+"else"    {printf( "Reserved word: %s\n", yytext ); return ELSE ;}
+"endif"    {printf( "Reserved word: %s\n", yytext ); return ENDIF ;}
+"for"    {printf( "Reserved word: %s\n", yytext ); return FOR ;}
+"from"    {printf( "Reserved word: %s\n", yytext ); return FROM ;}
+"to"    {printf( "Reserved word: %s\n", yytext ); return TO ;}
+"do"    {printf( "Reserved word: %s\n", yytext ); return DO ;}
+"endfor"    {printf( "Reserved word: %s\n", yytext ); return ENDFOR ;}
+"while"    {printf( "Reserved word: %s\n", yytext ); return WHILE ;}
+"endwhile"    {printf( "Reserved word: %s\n", yytext );  return ENDWHILE ;}
+"get"    {printf( "Reserved word: %s\n", yytext ); return GET ;}
+"print"    {printf( "Reserved word: %s\n", yytext ); return PRINT ;}
+"int"    {printf( "Reserved word: %s\n", yytext ); return INT ;}
+"string"    {printf( "Reserved word: %s\n", yytext ); return STRING ;}
+"vector"    {printf( "Reserved word: %s\n", yytext ); return VECTOR ;}
+"const"    {printf( "Reserved word: %s\n", yytext ); return CONST ;}
+"bool"    {printf( "Reserved word: %s\n", yytext ); return BOOL ;}
+"char"    {printf( "Reserved word: %s\n", yytext ); return CHAR ;}
+"real"    {printf( "Reserved word: %s\n", yytext ); return REAL ;}
+"sqrt"    {printf( "Reserved word: %s\n", yytext ); return SQRT ;}
+
+{IDENTIFIER}	{printf( "Identifier: %s\n", yytext ); return IDENTIFIER ;}
+
+{CONST}	{printf( "Constant: %s\n", yytext ); return CONSTANT ;}
+
+":"	{printf( "Separator: %s\n", yytext ); return COLON ;}
+";"	{printf( "Separator: %s\n", yytext ); return SEMI_COLON ;}
+","	{printf( "Separator: %s\n", yytext ); return COMA ;}
+"."	{printf( "Separator: %s\n", yytext ); return DOT ;}
+"("	{printf( "Separator: %s\n", yytext ); return LEFT_ROUND_PARENTHESIS ;}
+")"	{printf( "Separator: %s\n", yytext ); return RIGHT_ROUND_PARENTHESIS ;}
+"["	{printf( "Separator: %s\n", yytext ); return LEFT_SQUARE_PARENTHESIS ;}
+"]"	{printf( "Separator: %s\n", yytext ); return RIGHT_SQUARE_PARENTHESIS ;}
+"{"	{printf( "Separator: %s\n", yytext ); return LEFT_BRACKET ;}
+"}"	{printf( "Separator: %s\n", yytext ); return RIGHT_BRACKET ;}
+"+"	{printf( "Operator: %s\n", yytext ); return PLUS ;}
+"-"	{printf( "Operator: %s\n", yytext ); return MINUS ;}
+"*"	{printf( "Operator: %s\n", yytext ); return MULTIPLY ;}
+"/"	{printf( "Operator: %s\n", yytext ); return DIVISION ;}
+"<"	{printf( "Operator: %s\n", yytext ); return LESS_THAN ;}
+">"	{printf( "Operator: %s\n", yytext ); return GREATER_THAN ;}
+"<="	{printf( "Operator: %s\n", yytext ); return LESS_OR_EQUAL_THAN ;}
+">="	{printf( "Operator: %s\n", yytext ); return GREATER_OR_EQUAL_THAN ;}
+"!="	{printf( "Operator: %s\n", yytext ); return DIFFERENT ;}
+"="	{printf( "Operator: %s\n", yytext ); return ASSIGNMENT ;}
+"=="	{printf( "Operator: %s\n", yytext ); return EQUAL ;}
+"^"	{printf( "Operator: %s\n", yytext ); return POWER ;}
+"|"	{printf( "Operator: %s\n", yytext ); return OR ;}
+"&"	{printf( "Operator: %s\n", yytext ); return AND ;}
+"!"	{printf( "Operator: %s\n", yytext ); return NOT ;}
+
+"{"[^}\n]*"}"	/* elimina comentarii */ {}
+
+[ \t]+	/* elimina spatii */  	{}
+
+[\n]+   {}
+
+(($|&|[0-9])[a-zA-Z]|_[a-zA-Z])([_a-zA-Z]|[0-9])*  { printf("Error - BAD IDENTIFIER: %s\n", yytext); }
+
+\"([a-zA-Z0-9 ])*   { printf("Error - BAD STRING: %s\n", yytext); }
+
+%%

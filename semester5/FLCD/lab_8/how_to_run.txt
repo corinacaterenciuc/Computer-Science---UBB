@@ -1,0 +1,5 @@
+flex lang.lxi
+gcc lex.yy.c -o result
+./result < your_program.txt
+
+// Ubuntu saved me a big headache!

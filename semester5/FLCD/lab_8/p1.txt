@@ -1,0 +1,13 @@
+start
+int a, b, c, max;
+get a, b, c;
+if a > b:
+	max = a;
+else:
+	max = b;
+endif
+if max < c:
+	max = c;
+endif
+print max;
+finish

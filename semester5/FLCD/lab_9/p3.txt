@@ -1,0 +1,12 @@
+start
+int n, x, sum;
+int vector [1000] a;
+get n;
+sum = 0;
+for i from 1 to n :
+	get x;
+	a[i] = x;
+	sum = sum + x;
+endfor
+print sum;
+finish

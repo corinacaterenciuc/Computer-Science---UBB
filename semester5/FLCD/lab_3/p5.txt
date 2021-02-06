@@ -1,0 +1,17 @@
+start
+real a, b, c, d, sol_1, sol_2, minus1, sqrt_d, numarator, numitor;
+get a, b ,c;
+if a>0 :
+	d = b*b - 4*a*c;
+	if d>0:
+	    minus1 = 0-1;
+	    sqrt_d = sqrt d;
+	    numarator = minus1 * b + sqrt_d;
+	    numitor = 2 * a;
+		sol_1 = numarator/numitor;
+		numarator = minus1 * b - sqrt_d;
+		sol_2 = numarator/numitor;
+    endif
+endif
+print sol_1, sol_2;
+finish
