@@ -1,0 +1,225 @@
+---
+format: markdown
+title: Three algorithms for calculating the GCD of two numbers
+author: Caterenciuc Corina
+...
+
+
+\newcommand{\mr}[1]{\mathrm{#1}}
+\newcommand{\mb}[1]{\mathbf{#1}} 
+\newcommand{\mm}[1]{\mathbb{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mt}[1]{\mathtt{#1}} 
+\newcommand{\Om}{\Omega}
+\newcommand{\om}{\omega}
+\newcommand{\dagg}{\dagger}
+\newcommand{\tuple}[1]{\langle #1 \rangle}
+\newcommand{\bash}[1]{\backslash{#1}} 
+\newcommand{\ti}[1]{\textit{#1}}
+\newcommand{\tb}[1]{\textbf{#1}}
+\newcommand{\ts}[1]{\textsc{#1}}
+\newcommand{\tu}[1]{\underline{#1}}
+\newcommand{\ty}[1]{\texttt{#1}}
+\newcommand{\pp}[2]{\Pr\left[{#1}\,\mid\,{#2}\right]}
+\newcommand{\mood}[1]{\,(\mathrm{modulo}\,\,{#1})}
+\newcommand{\modd}{\,\mathrm{mod}\,}
+\newcommand{\Ke}[1]{\mathrm{Kern}\left[{#1}\right]}
+\newcommand{\im}{\mathrm{im}\,}
+\newcommand{\dset}[2]{\left\{{#1}\, | \,{#2} \right\}}
+\newcommand{\sset}[1]{\left\{{#1}\right\}}
+\newcommand{\sgn}{\mr{sgn}}
+\newcommand{\barr}[1]{\overline{#1}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\kp}[1]{\langle #1 \rangle}
+\newcommand{\braket}[2]{\langle{#1}\,|\,{#2}\rangle}
+\newcommand{\ms}[1]{\underline{#1}}
+\newcommand{\teilt}{\,\vDash\,}
+\newcommand{\steilt}{\,\vdash\,}
+\newcommand{\nteilt}{\,\nvDash\,}
+\newcommand{\nsteilt}{\,\nvdash\,}
+\newcommand{\ord}[1]{\mr{ord}\left({#1}\right)}
+\newcommand{\lcm}[1]{\mr{lcm}\left({#1}\right)}
+\newcommand{\D}{\downarrow}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\vtheta}{\vartheta}
+\newcommand{\sql}{\,\sqsubseteq\,}
+\newcommand{\deff}{\stackrel{\text{ def }}{=}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\QED}{\phantom{mmm}\blacksquare}
+\newcommand{\cycle}[2]{\left[\begin{matrix}{#1}\\{#2}\end{matrix}\right]}
+\newcommand{\parti}[2]{\left\{\begin{matrix}{#1}\\{#2}\end{matrix}\right\}}
+\newcommand{\eev}{\wedge}
+
+#User instructions
+
+To generate the PDF of this docment please run the command " pandoc -t latex -o Lab1.pdf Lab1.txt " . \break
+To run the code from this document please use " notangle Lab1.txt >  Lab1.py " to generate the python code \break
+and then run it with " python3 Lab1.py "
+
+# Calculating GCD with Subtractions {#subtractions}
+
+The first algorithm I chose for calculating the greatest common divisor of two natural numbers is the Euclidean algorithm with subtractions.
+This method gets as input two natural numbers, compares them and changes the value of the greatest one with the difference between them.
+
+~~~~~{.python}
+<<compare and subtract>>=
+if a>b:
+	a = a-b
+else:
+	b = b-a
+@
+~~~~~
+
+The substractions continue until the two numbers are equal.
+
+~~~~~{.python}
+<<while not equal>>=
+while a != b:
+	<<compare and subtract>>
+@
+~~~~~
+
+When the two numbers are equal, their value is returned as it represents the gretest common divisor between the original given numbers.
+
+~~~~~{.python}
+<<GCD with subtractions>>=
+def gcd_subtractions(a,b) :
+	<<while not equal>>
+	return a
+@
+~~~~~
+
+Example: gcd_subtractions(28, 16) = gcd_subtractions(28-16, 16) = gcd_subtractions(12, 16-12) = gcd_subtractions(12-4, 4) = gcd_subtractions(8-4, 4) = 4
+
+# Calculating the GCD with the Extended Euclidean Algorithm {#extended}
+
+This algorithm also calculates two integer coefficients u, v such that $au + bv = (a, b)$.
+
+
+~~~~~{.python}
+<<GCD with extended Euclidean Algorithm>>=
+def gcd_extendedEuclid(a,b) :
+	u2 = 1
+	u1 = 0
+	v2 = 0
+	v1 = 1
+	while b > 0:
+		q = a//b
+		r = a%b
+		u = u2 - q*u1
+		v = v2 - q*v1
+		a = b
+		b = r
+		u2 = u1
+		u1 = u
+		v2 = v1
+		v1 = v
+	
+	return a, u2, v2
+@
+~~~~~
+
+Example: gcd_extended(28, 16) =  [4, -1, 2], so we have -1*28 + 2*16 = 4
+
+# Calculating the GCD with  Euclidean Algorithm (modulo) {#modulo}
+
+This algorithm gets as input two natural numbers $a, b$, $a,b <= n$ and $a>=b$.
+
+~~~~~{.python}
+<<GCD with Eulidean algorithm - modulo>>=
+def gcd_modulo(a,b) :
+	<<while loop>>
+	<<return statement>>
+@
+~~~~~
+
+It calculates the greatest common divisor by replacing a with b and b with a modulo b until b is 0. 
+
+~~~~~{.python}
+<<while loop>>=
+while b>0:
+	r= a%b
+	a = b
+	b = r
+@
+~~~~~
+
+Then returns the value of a.
+
+~~~~~{.python}
+<<return statement>>=
+return a
+@
+~~~~~
+
+Example: gcd_modulo(28, 16) = gcd(16, 12) = gcd_modulo(12, 4) = gcd_modulo(4, 0) = 4
+
+Compared to the fist algorithm, this one is faster which allows us to calculate the gcd of two arbitrarely large natural numbers. 
+
+In order to test how much time it takes for each algorithm to calculate the gcd, I use a function that gets as parameters a lambda function of the chosen gcd algorithm and the two natural numbers.
+It uses the timeit.default_time function which is defined as follows:
+
+"timeit.default_timer()
+Define a default timer, in a platform-specific manner. On Windows, time.clock() has microsecond granularity, but time.time()’s granularity is 1/60th of a second. 
+On Unix, time.clock() has 1/100th of a second granularity, and time.time() is much more precise. 
+On either platform, default_timer() measures wall clock time, not the CPU time. 
+This means that other processes running on the same computer may interfere with the timing."
+
+~~~~~{.python}
+<<duration function>>=
+def duration(fct, a, b) :
+	start = timeit.default_timer()
+   	print('gcd({}, {}) = {}'.format(a, b, fct(a, b)))
+    	stop = timeit.default_timer()
+    	print('Duration: {} seconds \n'.format(stop - start) )
+@
+~~~~~
+
+The duration of all three algorithms will be calculated with fairly large numbers (28^20 and 16^20):
+
+~~~~~{.python}
+<<calculate duration>>=
+gcd1 = lambda a,b: gcd_subtractions(a,b)
+gcd2 = lambda a,b: gcd_extendedEuclid(a,b)
+gcd3 = lambda a,b: gcd_modulo(a,b)
+
+duration(gcd1, 28**20, 16**20)
+duration(gcd2, 28**99, 16**99)
+duration(gcd3, 28**20, 16**20)
+@
+~~~~~
+
+To test if the Euclidean algorithm (modulo) works for numbers of arbitrary size, I used one pair of *very* large numbers (98**999 and 102**999), and another one of *absurdly* large ones (39898**9999, 57896**9999):
+
+~~~~~{.python}
+<<test - arbitrary size>>=
+duration(gcd3, 98**999, 102**999)
+duration(gcd3, 39898**9999, 57896**9999)
+@
+~~~~~
+
+
+In the end, this will be the final result:
+
+~~~~~{.python}
+<<*>>= 
+import timeit
+
+<<GCD with subtractions>>
+
+<<GCD with extended Euclidean Algorithm>>
+
+<<GCD with Eulidean algorithm - modulo>>
+
+<<duration function>>
+<<calculate duration>>
+<<test - arbitrary size>>
+
+@
+~~~~~
+
+

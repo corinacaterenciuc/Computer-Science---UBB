@@ -1,0 +1,231 @@
+---
+format: markdown
+title: Pseudoprimality
+author: Caterenciuc Corina
+...
+
+
+\newcommand{\mr}[1]{\mathrm{#1}}
+\newcommand{\mb}[1]{\mathbf{#1}} 
+\newcommand{\mm}[1]{\mathbb{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mt}[1]{\mathtt{#1}} 
+\newcommand{\Om}{\Omega}
+\newcommand{\om}{\omega}
+\newcommand{\dagg}{\dagger}
+\newcommand{\tuple}[1]{\langle #1 \rangle}
+\newcommand{\bash}[1]{\backslash{#1}} 
+\newcommand{\ti}[1]{\textit{#1}}
+\newcommand{\tb}[1]{\textbf{#1}}
+\newcommand{\ts}[1]{\textsc{#1}}
+\newcommand{\tu}[1]{\underline{#1}}
+\newcommand{\ty}[1]{\texttt{#1}}
+\newcommand{\pp}[2]{\Pr\left[{#1}\,\mid\,{#2}\right]}
+\newcommand{\mood}[1]{\,(\mathrm{modulo}\,\,{#1})}
+\newcommand{\modd}{\,\mathrm{mod}\,}
+\newcommand{\Ke}[1]{\mathrm{Kern}\left[{#1}\right]}
+\newcommand{\im}{\mathrm{im}\,}
+\newcommand{\dset}[2]{\left\{{#1}\, | \,{#2} \right\}}
+\newcommand{\sset}[1]{\left\{{#1}\right\}}
+\newcommand{\sgn}{\mr{sgn}}
+\newcommand{\barr}[1]{\overline{#1}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\kp}[1]{\langle #1 \rangle}
+\newcommand{\braket}[2]{\langle{#1}\,|\,{#2}\rangle}
+\newcommand{\ms}[1]{\underline{#1}}
+\newcommand{\teilt}{\,\vDash\,}
+\newcommand{\steilt}{\,\vdash\,}
+\newcommand{\nteilt}{\,\nvDash\,}
+\newcommand{\nsteilt}{\,\nvdash\,}
+\newcommand{\ord}[1]{\mr{ord}\left({#1}\right)}
+\newcommand{\lcm}[1]{\mr{lcm}\left({#1}\right)}
+\newcommand{\D}{\downarrow}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\vtheta}{\vartheta}
+\newcommand{\sql}{\,\sqsubseteq\,}
+\newcommand{\deff}{\stackrel{\text{ def }}{=}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\QED}{\phantom{mmm}\blacksquare}
+\newcommand{\cycle}[2]{\left[\begin{matrix}{#1}\\{#2}\end{matrix}\right]}
+\newcommand{\parti}[2]{\left\{\begin{matrix}{#1}\\{#2}\end{matrix}\right\}}
+\newcommand{\eev}{\wedge}
+
+#User instructions
+
+To generate the PDF of this docment please run the command " pandoc -t latex -o Lab2.pdf Lab2.txt " . \break
+To run the code from this document please use " notangle Lab2.txt >  Lab2.py " to generate the python code \break
+and then run it with " python3 Lab2.py "
+
+#Pseudoprimality
+
+We know that if an odd natural number $n$ is prime, 
+then for any $b \in \mathbb{Z}$ $(b < n)$ with %gcd(b, n) = 1$, 
+we have that $b^{n-1} \equiv 1 \mod n$ (Fermat's Little Theorem).
+
+The Fermat Test is defines as follows: 
+	An odd composite number $n$ is called pseudoprime to the base b if $gcd(b, n) = 1$ and 
+	$b^{n-1} \equiv 1 \mod n$.
+
+
+Given this information, we have to determine all bases $b$ to which an odd composite number $n$ is pseudoprime, using repeated squaring exponentiation.
+
+In order to do this, we will first need an algorithm to compute the greatest common divisor of two natural numbers.
+We will be using the Euclidean algorithm.
+
+~~~~~{.python}
+<<Euclidean algorithm>>=
+def gcd(a, b):
+    while b>0 :
+        r= a%b
+        a = b 
+        b = r 
+    return a
+@
+~~~~~
+
+We will also need a repeated squaring algorithm to calculate the values of $b^{k} \mod n$.
+We will be basing the process on a few simple algerbra facts:
+
+- ($x^a$)$^2 = x^{2a}$
+- $x^{a+b} = x^a x^b$
+	
+Using these facts we can write $b^k$ in this form: 
+
+- $b$($b^2$)$^\frac{k-1}{2}$, if $k$ is odd
+- ($b^2$)$^\frac{k}{2}$     , if $k$ is even  
+
+In order to avoid working with very large numbers by calculating $b^k$ and then computing $\mod n$, 
+we will be performing $\mod n$ at each step of the exponentiation algorithm.
+
+~~~~~{.python}
+<<Repeated squaring algorithm>>=
+def exponentiation(b, exp, n): 
+    odd_result = 1; 
+    while(exp > 0): 
+        if (exp % 2 != 0): 
+            odd_result = (odd_result * b) % n; 
+        b = (b * b) % n; 
+        exp = int(exp / 2); 
+    return odd_result % n; 
+@
+~~~~~
+
+Alongside the Fermat Test, we have the following information:
+
+Witnesses of non-primality:
+	For any $n$ we call the basis $b$, $1 \leq b \leq n-1$, with $gcd(b, n) = 1$, 
+	a witness of non-primality if $b^{n-1} \not\equiv 1 \mod n$ .
+
+To find all witnesses of non-primality for an odd composite natural number $n$, 
+we will be using the Fermat Test for $n$ and all bases $b$ from the interval $[2, n-1]$.
+
+All witnesses of non-primality will be saved in a list and returned by the following algorithm:
+
+~~~~~{.python}
+<<Witnesses algorithm>>=
+def Witnesses(n):
+    witnesses = []
+    b = 2
+    while b < n:
+        while gcd(b, n) != 1:
+            b += 1
+        r = exponentiation(b, n-1, n)
+        if r != 1:
+            witnesses.append(b);
+        b += 1
+    return witnesses
+@
+~~~~~
+
+In order to test the accuracy of our algorithm we will be using (iii) from the following theorem:
+
+Theorem:
+Let $n \in \mathbb{N}$, be an odd composite. \break
+	(i) $n$ pseudoprime to $b$ => $n$ pseudoprime to $-b$ and $b^{-1}$, where $b^{-1}$ is the inverse $\mod n$ of $b$. \break
+	(ii) $n$ pseudoprime to $b1$ and $b2$ => $n$ pseudoprime to $b1*b2$. \break
+	(iii) if $n$ fails $b^{n-1} \equiv 1 \mod n$ for a single base $b < n$,
+	      then $n$ fails for at least half of the possible bases $b < n$. \break
+
+We will be testing if the witnesses algorithm returns at least $\frac{n-2}{2}$ witnesses for an odd composite natural number $n$.
+
+~~~~~{.python}
+<<Test algorithm>>=
+def TestWitnesses(n, w):
+    possible_b = n-2
+    half_possible = possible_b//2
+    nr_witnesses = len(w)
+    return nr_witnesses >= half_possible
+@
+~~~~~
+
+We want to see if this approch works for some random odd composite natural numbers.
+In order to do that, we have a random_test function which will get 100 of these numbers, find their witnesses and test the findings.
+
+~~~~~{.python}
+<<Test random numbers>>=
+def random_tests():
+    test_results = []
+    while len(test_results) < 100:
+        n = random.randrange(101, 10001, 2)
+        while Prime(n):
+            n = random.randrange(101, 10001, 2)
+        w = Witnesses(n)
+        t = TestWitnesses(n, w)
+        test_results.append([n, w, t])
+    for l in test_results:
+        print("n = ", l[0])
+        #print("witnesses = ", str(l[1])[1:-1])
+        print("test result: ", l[2])
+        print()
+    print("DONE.")
+@
+~~~~~
+
+We want to perform the computations only on composite numbers, so we want to exclude the random numbers that are prime.
+To do that we use this Prime function which return true if the number is prime or false otherwise.
+
+~~~~~{.python}
+<<Prime lgorithm>>=
+def Prime(n) : 
+    if (n <= 1) : 
+        return False
+    if (n <= 3) : 
+        return True
+    if (n % 2 == 0 or n % 3 == 0) : 
+        return False
+    i = 5
+    while(i * i <= n) : 
+        if (n % i == 0 or n % (i + 2) == 0) : 
+            return False
+        i = i + 6
+    return True
+@
+~~~~~
+
+In the end, this will be the final result:
+
+~~~~~{.python}
+<<*>>= 
+import random
+
+<<Euclidean algorithm>>
+
+<<Repeated squaring algorithm>>
+
+<<Witnesses algorithm>>
+
+<<Test algorithm>>
+
+<<Prime lgorithm>>
+
+<<Test random numbers>>
+
+random_tests()
+@
+~~~~~
+
+

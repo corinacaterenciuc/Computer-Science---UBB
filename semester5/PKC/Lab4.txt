@@ -1,0 +1,518 @@
+---
+format: markdown
+title: Laboratory 4
+author: Caterenciuc Corina
+...
+
+
+\newcommand{\mr}[1]{\mathrm{#1}}
+\newcommand{\mb}[1]{\mathbf{#1}} 
+\newcommand{\mm}[1]{\mathbb{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mt}[1]{\mathtt{#1}} 
+\newcommand{\Om}{\Omega}
+\newcommand{\om}{\omega}
+\newcommand{\dagg}{\dagger}
+\newcommand{\tuple}[1]{\langle #1 \rangle}
+\newcommand{\bash}[1]{\backslash{#1}} 
+\newcommand{\ti}[1]{\textit{#1}}
+\newcommand{\tb}[1]{\textbf{#1}}
+\newcommand{\ts}[1]{\textsc{#1}}
+\newcommand{\tu}[1]{\underline{#1}}
+\newcommand{\ty}[1]{\texttt{#1}}
+\newcommand{\pp}[2]{\Pr\left[{#1}\,\mid\,{#2}\right]}
+\newcommand{\mood}[1]{\,(\mathrm{modulo}\,\,{#1})}
+\newcommand{\modd}{\,\mathrm{mod}\,}
+\newcommand{\Ke}[1]{\mathrm{Kern}\left[{#1}\right]}
+\newcommand{\im}{\mathrm{im}\,}
+\newcommand{\dset}[2]{\left\{{#1}\, | \,{#2} \right\}}
+\newcommand{\sset}[1]{\left\{{#1}\right\}}
+\newcommand{\sgn}{\mr{sgn}}
+\newcommand{\barr}[1]{\overline{#1}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\kp}[1]{\langle #1 \rangle}
+\newcommand{\braket}[2]{\langle{#1}\,|\,{#2}\rangle}
+\newcommand{\ms}[1]{\underline{#1}}
+\newcommand{\teilt}{\,\vDash\,}
+\newcommand{\steilt}{\,\vdash\,}
+\newcommand{\nteilt}{\,\nvDash\,}
+\newcommand{\nsteilt}{\,\nvdash\,}
+\newcommand{\ord}[1]{\mr{ord}\left({#1}\right)}
+\newcommand{\lcm}[1]{\mr{lcm}\left({#1}\right)}
+\newcommand{\D}{\downarrow}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\vtheta}{\vartheta}
+\newcommand{\sql}{\,\sqsubseteq\,}
+\newcommand{\deff}{\stackrel{\text{ def }}{=}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\QED}{\phantom{mmm}\blacksquare}
+\newcommand{\cycle}[2]{\left[\begin{matrix}{#1}\\{#2}\end{matrix}\right]}
+\newcommand{\parti}[2]{\left\{\begin{matrix}{#1}\\{#2}\end{matrix}\right\}}
+\newcommand{\eev}{\wedge}
+
+#User instructions
+
+To generate the PDF of this docment please run the command " pandoc -t latex -o Lab4.pdf Lab4.txt " . \break
+To run the code from this document please use " notangle Lab4.txt >  Lab4.py " to generate the python code \break
+and then run it with " python3 Lab4.py "
+
+#The ElGamal cryptosystem (basic version)
+
+ElGamal is a public key cryptosystem based on the discrete logarithm problem for a group G,
+i.e. every person has a key pair (private_key, public_key),
+and given only the public key one has to find the discrete logarithm (solve the discrete logarithm problem) to get the secret key.
+It is closely related to The Diffie-Hellman Problem.
+
+Diffe-Hellman Problem (DHP):
+Let (G, .) be a finite cyclic group with n elements, having a generator g
+and let $g^a, g^b \in \mathbb{G}$ for some $a, b \in$ {0, ..., n-1}. Determine $g^{a*b}$.
+
+Discrete Logarithm Problem (DLP):
+Let (G, .) be a finite cyclic group with n elements, having a generator g
+and let $y \in \mathbb{G}$. Determine a power x ($0 \leqslant x \leqslant n-1$) such that $y = g^x$
+(we formally write $x = \log_g y$).
+
+#Key generation
+
+We need to generate a public key and a private key.
+First we will generate a large random prime $p$ and a generator g of $\mathbb{Z}^*_p$.
+
+In order to encode the given text to some number m, we will need to validate p with this contraint:
+$27^k < p < 27^l$, so we will generate the prime p taking this into consideration.
+To check if p is prime, we will use the Miller-Rabin Test.
+
+~~~~~{.python}
+<<Generate prime P>>=
+<<Miller-Rabin algorithm>>
+
+def get_prime_for_kl(k, l):
+    k_power = 27 ** k
+    l_power = 27 ** l
+    possible_prime = randint(k_power + 1, l_power)
+    probability_of_prime = miller_rabin(possible_prime, 3)
+    while probability_of_prime < 0.9:
+        possible_prime = randint(k_power + 1, l_power)
+        probability_of_prime = miller_rabin(possible_prime, 3)
+    return possible_prime
+@
+~~~~~
+
+For the random generator of $\mathbb{Z}^*_p$ we check a random number between 2 and p-1 if it generates all elements.
+
+~~~~~{.python}
+<<Get generator>>=
+def is_root(element, p):
+    count = 1
+    rez = element % p
+    while rez > 1:
+        count += 1
+        rez = rez * element % p
+    return count == p - 1
+
+
+def generator(p):
+    for r in range(2, p):
+        if is_root(r, p):
+            return r
+    return None
+@
+~~~~~
+
+Then we will select a random integer $a$ ($1 \leqslant a \leqslant p-2$) and compute $g^a \mod  p$.
+
+The public key will be ($p, g, g^a$) and the private key will be $a$.
+
+~~~~~{.python}
+<<Key generation>>=
+<<Generate prime P>>
+
+<<Get generator>>
+
+def generate_key(k, l):
+    prime = get_prime_for_kl(k, l)
+    g = generator(prime)
+    a = randint(1, prime - 2)  # the private key
+    ga = exponentiation(g, a, prime)
+    return prime, g, ga, a
+@
+~~~~~
+
+#Encryption and Decryption
+
+##Encryption
+
+For the encryption we only need the public key ($p, g, g^a$), and the message.
+The message will be representaed as a number m between 0 and p-1.
+Then a random integer k will be selected, ($1 \leqslant k \leqslant p-2$).
+Using the selected k, $\alpha$ and $\beta$ will be computed as follows:
+$\alpha  = g^k$ and $\beta  =  m*{g^a}^k \mod p$.
+The ciphertext that is sent back for decryption will be $c =$($\alpha, \beta$).
+
+~~~~~{.python}
+<<Encrypt a given number>>=
+def encrypt(number, public_key):
+    k = randint(2, public_key[0] - 1)
+    alpha = exponentiation(public_key[1], k, public_key[0])
+    base_beta = exponentiation(public_key[2], k, public_key[0])
+    beta = exponentiation(number * base_beta, 1, public_key[0])
+    return alpha, beta
+@
+~~~~~
+
+Because we need to be able to encrypt large messages the given text will be split into blocks of k elements
+and the ciphertext will be made of blocks of l elements.
+
+We will apply the encrypt function on each group transformed into a number:
+
+
+~~~~~{.python}
+<<Encryption of full message>>=
+<<Encrypt a given number>>
+
+def show_encryption(message, public_key, k, l):
+    message = message.upper()
+    split_message = split_message_by(message, k)
+    cipher_numbers_list = []
+    split_ciphertext = []
+    for mes in split_message:
+        number = message_to_number(mes)
+        cipher_numbers = encrypt(number, public_key)
+        cipher_numbers_list.append(cipher_numbers)
+        ciphertext = number_to_message(cipher_numbers[1])
+        if len(ciphertext) < l:
+            ciphertext = " " * (l - len(ciphertext)) + ciphertext
+        split_ciphertext.append(ciphertext)
+    print("Ciphertext:")
+    print("->", full_message_from_split_message(split_ciphertext).lower())
+    return cipher_numbers_list
+@
+~~~~~
+
+##Decryption
+
+In order to decrypt the ciphertext we will need the private key $a$ in addition to 
+the ciphertext $c =$($\alpha, \beta$) and the public key ($p, g, g^a$).
+The message is calculate as follows: $m = \alpha^{-a}*\beta$
+
+~~~~~{.python}
+<<Decrypt a given number>>=
+def decrypt(numbers, private_key, public_key):
+    base_decryption = exponentiation(numbers[0], public_key[0] - 1 - private_key, public_key[0])
+    plaincode = exponentiation(base_decryption * numbers[1], 1, public_key[0])
+    return plaincode
+@
+~~~~~
+
+The Decrypt function will be applied to the ciphertext of each group of l elements:
+
+
+~~~~~{.python}
+<<Decryption of full message>>=
+<<Decrypt a given number>>
+
+def show_decryption(cipher_numbers_list, private_key, public_key, k):
+    split_plaintext = []
+    for cipher_numbers in cipher_numbers_list:
+        plaincode = decrypt(cipher_numbers, private_key, public_key)
+        plaintext = number_to_message(plaincode)
+        if len(plaintext) < k:
+            plaintext = " " * (k - len(plaintext)) + plaintext
+        split_plaintext.append(plaintext)
+    print("Plaintext:")
+    print("->", full_message_from_split_message(split_plaintext).lower())
+@
+~~~~~
+
+#ElGamal algorithm
+
+~~~~~{.python}
+<<ElGamal algorithm>>=
+def ElGamal(message):
+    k = 4
+    l = 5
+    p, g, ga, a = generate_key(k, l)
+    public_key = [p, g, ga]
+    private_key = a
+
+    print("Given message:\n->", message)
+
+    cipher_numbers_list = show_encryption(message, public_key, k, l)
+
+    show_decryption(cipher_numbers_list, private_key, public_key, k)
+
+@
+~~~~~
+
+#Help functions
+
+In order to check if a large random integer number is prime, we use the Mille-Rabil Test, 
+which was already implemented in lab 3:
+
+
+~~~~~{.python}
+<<Miller-Rabin algorithm>>=
+def get_s_t(n):
+    n = n - 1
+    s = 0
+    while n % 2 == 0:
+        s += 1
+        n = n // 2
+    t = n
+    return s, t
+
+def choose_a(n):
+    return random.randrange(2, n)
+
+<<Repeated squaring algorithm>>
+
+def compute_sequence(a, s, t, n):
+    sequence = []
+    last_exponentiation_result = exponentiation(a, t, n)
+    for i in range(0, s + 1):
+        if i == 0:
+            seq_elem = last_exponentiation_result
+        else:
+            seq_elem = exponentiation(last_exponentiation_result, 2, n)
+            last_exponentiation_result = seq_elem
+        if seq_elem == 1:
+            if len(sequence) == 0:
+                return True
+            elif sequence[-1] == -1:
+                return True
+        elif seq_elem == n - 1:
+            seq_elem = -1
+        sequence.append(seq_elem)
+    return False
+
+def miller_rabin(n, k):
+    probability_prime = 1 - (1 / (4 ** k))
+    # step 0
+    s, t = get_s_t(n)
+    # print(s, t)
+    # step 1
+    all_a = []
+    a = choose_a(n)
+    all_a.append(a)
+    # print(a)
+    # step 2
+    possible_prime = compute_sequence(a, s, t, n)
+    # print(sequence, possible_prime)
+    # step 3
+    k -= 1
+    while k != 0 and possible_prime:
+        # if n is possible prime so far, we repeat steps 1-3, k times
+        # step 1
+        a = choose_a(n)
+        while a in all_a:
+            a = choose_a(n)
+        all_a.append(a)
+        # print(a)
+        # step 2
+        possible_prime = compute_sequence(a, s, t, n)
+        # print(sequence, possible_prime)
+        # step 3
+        k -= 1
+
+    if possible_prime:
+        # print("n is possible PRIME, with probability {} ".format(probability_prime))
+        return probability_prime
+    # step 4
+    else:
+        # print("n is COMPOSITE!")
+        return 0
+@
+~~~~~
+
+Both for Miller-Rabi Test and the ElGamal algorithm, we will need the Repeated squaring algorithm:
+
+~~~~~{.python}
+<<Repeated squaring algorithm>>=
+def exponentiation(b, exp, n):
+    odd_result = 1
+    while exp > 0:
+        if exp % 2 != 0:
+            odd_result = (odd_result * b) % n
+        b = (b * b) % n
+        exp = exp // 2
+    return odd_result % n
+@
+~~~~~
+
+##String to words to number
+
+~~~~~{.python}
+<<The alphabet>>=
+alphabet = {" ": 0, "A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8, "I": 9, "J": 10,
+            "K": 11, "L": 12, "M": 13, "N": 14, "O": 15, "P": 16, "Q": 17, "R": 18, "S": 19, "T": 20,
+            "U": 21, "V": 22, "W": 23, "X": 24, "Y": 25, "Z": 26}
+inv_alphabet = {v: k for k, v in alphabet.items()}
+@
+~~~~~
+
+~~~~~{.python}
+<<text to digits in base 27 to text>>=
+def get_digits_b27(plaintext):
+    digits = []
+    for el in plaintext:
+        digits.append(alphabet[el])
+    return digits
+
+
+def get_text_b27(digits):
+    text = ""
+    for d in digits:
+        text += inv_alphabet[d]
+    return text
+
+def to_digits(n, b):
+    """Convert a positive number n to its digit representation in base b."""
+    digits = []
+    while n > 0:
+        digits.insert(0, n % b)
+        n = n // b
+    return digits
+
+
+def from_digits(digits, b):
+    """Compute the number given by digits in base b."""
+    n = 0
+    for d in digits:
+        n = b * n + d
+    return n
+@
+~~~~~
+
+
+~~~~~{.python}
+<<message to code to message>>=
+<<The alphabet>>
+
+<<text to digits in base 27 to text>>
+
+def message_to_number(message):
+    number = from_digits(get_digits_b27(message), 27)
+    return number
+
+
+def number_to_message(number):
+    message = get_text_b27(to_digits(number, 27))
+    return message
+@
+~~~~~
+
+
+
+~~~~~{.python}
+<<Spliting message into blocks and putting them together >>=
+<<message to code to message>>
+
+def split_message_by(message, s):
+    split_text = []
+    stop_point = 0
+    for i in range(0, len(message) - s, s):
+        split_text.append(message[i:i + s])
+        stop_point = i + s
+    split_text.append(message[stop_point:])
+    if len(split_text[-1]) < s:
+        empty_fill = " " * (s - len(split_text[-1]))
+        split_text[-1] += empty_fill
+    return split_text
+
+
+def full_message_from_split_message(split_message):
+    message = ""
+    for mes in split_message:
+        message += mes
+    while message[-1] == " ":
+        message = message[:-1]
+    return message
+
+@
+~~~~~
+
+#Testing
+For testing we use some random phrases.
+
+~~~~~{.python}
+<<Test algorithm>>=
+def testing():
+    testing_phrases = ["this is the final lab for this course",
+                       "I had this course in Poland on my Erasmus semester but lets just say it was very "
+                       "different from what we did this semester",
+                       "I hope you liked having classes with us even though the circumstances were a bit odd",
+                       "The best time to take a break is now",
+                       "ugh i am stressing about other labs while i am trying to come up with some more phrases "
+                       "to test",
+                       "Last one comma it would had been better if the we had commas and periods and exclamation "
+                       "points and upper case letter in the alphabet period"]
+    print("Testing: ")
+    for phrase in testing_phrases:
+        print("")
+        ElGamal(phrase)
+        print("")
+
+@
+~~~~~
+
+In order to make this algorithm more interactive, I added a menu based "run" function which I think will be very easy to navigate.
+
+~~~~~{.python}
+<<Menu based Run function>>=
+def show_menu():
+    print()
+    print("Please enter ")
+    print(" 1 - to test the program with some predefined phrases")
+    print(" 2 - to test a message of your choice")
+    print(" 0 - to stop")
+
+
+def run():
+    while True:
+        show_menu()
+        try:
+            option = int(input("Enter option >> "))
+            if option == 1:
+                testing()
+            elif option == 2:
+                message = input("Give a message with letters from the english alphabet and spaces only, please >> ")
+                ElGamal(message)
+            elif option == 0:
+                return
+            else:
+                print("Wrong option!")
+        except Exception as e:
+            print(e)
+            print("^^^ this went wrong!!! - TRY AGAIN")
+
+@
+~~~~~
+
+In the end, this will be the final result:
+
+~~~~~{.python}
+<<*>>= 
+from random import randint
+import random
+
+<<Key generation>>
+
+<<Spliting message into blocks and putting them together >>
+
+<<Encryption of full message>>
+
+<<Decryption of full message>>
+
+<<ElGamal algorithm>>
+
+<<Test algorithm>>
+
+<<Menu based Run function>>
+
+run()
+@
+~~~~~
+

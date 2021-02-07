@@ -1,0 +1,308 @@
+---
+format: markdown
+title: Laboratory 3
+author: Caterenciuc Corina
+...
+
+
+\newcommand{\mr}[1]{\mathrm{#1}}
+\newcommand{\mb}[1]{\mathbf{#1}} 
+\newcommand{\mm}[1]{\mathbb{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mt}[1]{\mathtt{#1}} 
+\newcommand{\Om}{\Omega}
+\newcommand{\om}{\omega}
+\newcommand{\dagg}{\dagger}
+\newcommand{\tuple}[1]{\langle #1 \rangle}
+\newcommand{\bash}[1]{\backslash{#1}} 
+\newcommand{\ti}[1]{\textit{#1}}
+\newcommand{\tb}[1]{\textbf{#1}}
+\newcommand{\ts}[1]{\textsc{#1}}
+\newcommand{\tu}[1]{\underline{#1}}
+\newcommand{\ty}[1]{\texttt{#1}}
+\newcommand{\pp}[2]{\Pr\left[{#1}\,\mid\,{#2}\right]}
+\newcommand{\mood}[1]{\,(\mathrm{modulo}\,\,{#1})}
+\newcommand{\modd}{\,\mathrm{mod}\,}
+\newcommand{\Ke}[1]{\mathrm{Kern}\left[{#1}\right]}
+\newcommand{\im}{\mathrm{im}\,}
+\newcommand{\dset}[2]{\left\{{#1}\, | \,{#2} \right\}}
+\newcommand{\sset}[1]{\left\{{#1}\right\}}
+\newcommand{\sgn}{\mr{sgn}}
+\newcommand{\barr}[1]{\overline{#1}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\kp}[1]{\langle #1 \rangle}
+\newcommand{\braket}[2]{\langle{#1}\,|\,{#2}\rangle}
+\newcommand{\ms}[1]{\underline{#1}}
+\newcommand{\teilt}{\,\vDash\,}
+\newcommand{\steilt}{\,\vdash\,}
+\newcommand{\nteilt}{\,\nvDash\,}
+\newcommand{\nsteilt}{\,\nvdash\,}
+\newcommand{\ord}[1]{\mr{ord}\left({#1}\right)}
+\newcommand{\lcm}[1]{\mr{lcm}\left({#1}\right)}
+\newcommand{\D}{\downarrow}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\vtheta}{\vartheta}
+\newcommand{\sql}{\,\sqsubseteq\,}
+\newcommand{\deff}{\stackrel{\text{ def }}{=}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\QED}{\phantom{mmm}\blacksquare}
+\newcommand{\cycle}[2]{\left[\begin{matrix}{#1}\\{#2}\end{matrix}\right]}
+\newcommand{\parti}[2]{\left\{\begin{matrix}{#1}\\{#2}\end{matrix}\right\}}
+\newcommand{\eev}{\wedge}
+
+#User instructions
+
+To generate the PDF of this docment please run the command " pandoc -t latex -o Lab3.pdf Lab3.txt " . \break
+To run the code from this document please use " notangle Lab3.txt >  Lab3.py " to generate the python code \break
+and then run it with " python3 Lab3.py "
+
+#Miller-Rabin Test
+
+Let $n \in \mathbb{N}$ be an odd and $b \in \mathbb{Z}$ with (b,n)=1.
+If n is pseudoprime to b, then $b^{n-1} \equiv 1 \mod n$.
+
+The ideea of the Miller-Rabin test is that we successively extract the square roots of the previous congruence,
+that is, raise $b$ to $\frac{n-1}{2}$, $\frac{n-1}{4}$, ..., $\frac{n-1}{2^s}$,  where
+$t = \frac{n-1}{2^s}$ is odd. Then the first result different of 1 has to be -1 if $n$ is prime,
+because $\frac{+}{}1$ are the only square roots modulo a prime of 1.
+
+In practice,  we write $n-1 = 2^s*t$ for some odd $t$.
+Then compute $b^t$($\mod n$). If it is not 1, then we compute its succesive squares $b^{2*t}$ ($\mod n$),
+$b^{2^s*t}$ ($\mod n$) etc. until we get 1 and the algorithm stops because in the step immediately before gettring 1,
+we should have obtained -1, otherwise $n$ being composite.
+
+The Miller-Rabin Test relies on the following result:
+
+Theorem:
+Let $p$ be a prime. Then the equation \break
+	$a^2 = 1$ ($\mod p$) \break
+has only the solution $a = 1$ ($\mod p$) and $a=-1$ ($\mod p$). \break
+
+Definition:
+Let $n \in \mathbb{N}$ be an odd composite and write $n-1 = 2^s*t$ for some odd $t$. /break
+Let $b \in \mathbb{Z}$ with (b,n) = 1. If $n$ and $b$ satisfy the condition \break
+	$b^t=1$ ($\mod n$) or $\exists 0 \leqslant j < s$ : $b^{2^j * t} = -1$ ($\mod n$) (1) \break
+then $n$ is called strong pseudoprime to the base $b$. \break
+
+One can show that (1) holds for $n$ prime and (b,n)=1.
+
+Theorem:
+Strong pseudoprime to the base b $\Rightarrow$ pseudoprime to the base b. \break
+
+Theorem:
+Let $n \in \mathbb{N}$ be an odd composite. /break
+	(i) If n is a strong pseudoprime to b, then n is a strong pseudoprime to $b^k$ for every $k \in \mathbb{Z}$. \break
+	(ii) n is strong pseudoprime to b for at most 25% of the values $0<b<n$. 
+
+In general, if n is a strong pseudoprime to a base b1 and to a base b2, then it does not follow that n is a strong pseudoprime to base b1b2.
+
+The first step in the Miller-Rabil algorithm is to calculate s and t from $n-1=2^s*t$.
+The function gets as input the number n, to be tested and returns the s and t.
+
+~~~~~{.python}
+<<Calculating s and t>>=
+def get_s_t(n):
+    n = n - 1
+    s = 0
+    while n % 2 == 0:
+        s += 1
+        n = n // 2
+    t = n
+    return s, t
+@
+~~~~~
+
+Next step is to choose randomly a base a, $1<a<n$.
+
+~~~~~{.python}
+<<Choose a>>=
+def choose_a(n):
+    return random.randrange(2, n)
+@
+~~~~~
+
+In order to be able to execute the next step, we need to implement a repeated squaring algorithm.
+We will use the following one (used in the previous lab as well).
+
+~~~~~{.python}
+<<Repeated squaring algorithm>>=
+def exponentiation(b, exp, n):
+    odd_result = 1
+    while exp > 0:
+        if exp % 2 != 0:
+            odd_result = (odd_result * b) % n
+        b = (b * b) % n
+        exp = exp // 2
+    return odd_result % n
+@
+~~~~~
+
+To compute the sequence $b^t$ ($\mod n$), $b^{2*t}$ ($\mod n$), $b^{2^s*t}$ ($\mod n$) etc. we will use the next function.
+The function will take as input: \break
+ $a$ chosen randomly between 2 and $n-1$ \break
+ $s$ and $t$ calculated from $n-1 = 2^s*t$ \break
+ and $n$, the number we want to test. \break
+The function will return True - if n is possible prime and False - if n is composite. \break
+
+~~~~~{.python}
+<<Compute the sequence>>=
+def compute_sequence(a, s, t, n):
+    sequence = []
+    last_exponentiation_result = exponentiation(a, t, n)
+    for i in range(0, s + 1):
+        if i == 0:
+            seq_elem = last_exponentiation_result
+        else:
+            seq_elem = exponentiation(last_exponentiation_result, 2, n)
+            last_exponentiation_result = seq_elem
+        if seq_elem == 1:
+            if len(sequence) == 0:
+                return True
+            elif sequence[-1] == -1:
+                return True
+        elif seq_elem == n - 1:
+            seq_elem = -1
+        sequence.append(seq_elem)
+    return False
+@
+~~~~~
+
+Now to the main algoritm, we use the previous functions in the right order.
+The function takes as input n - the number we are testing (natural number, bigger than 3), 
+and k - reprezenting the number of bases to be used for testing.
+
+~~~~~{.python}
+<<Miller-Rabin algorithm>>=
+def miller_rabin(n, k):
+    probability_prime = 1 - (1 / (4 ** k))
+    # step 0
+    s, t = get_s_t(n)
+    # step 1
+    all_a = []
+    a = choose_a(n)
+    all_a.append(a)
+    # step 2
+    possible_prime = compute_sequence(a, s, t, n)
+    # step 3
+    k -= 1
+    while k != 0 and possible_prime:
+        # if n is possible prime so far, we repeat steps 1-3, k times
+        # step 1
+        a = choose_a(n)
+        while a in all_a:
+            a = choose_a(n)
+        all_a.append(a)
+        # step 2
+        possible_prime = compute_sequence(a, s, t, n)
+        # step 3
+        k -= 1
+
+    if possible_prime:
+        print("n is possible PRIME, with probability {} ".format(probability_prime))
+    # step 4
+    else:
+        print("n is COMPOSITE!")
+@
+~~~~~
+
+#Testing
+
+For testing we use Mersenne prime numbers.
+We can also observe that the algorithm works for numbers of very large sizes (6987 digits - $2^23209-1$) in the second version of the test.
+
+~~~~~{.python}
+<<Test algorithm>>=
+def testing(version, k):
+    mersenne_powers_v1 = [3, 5, 7, 13, 17, 19, 31, 61, 89, 107, 127, 521, 607, 1279, 2203]
+    mersenne_powers_v2 = [2281, 3217, 4253, 4423, 9689, 9941, 11213, 19937, 21701, 23209]
+
+    if version == 1:
+        mersenne_powers = mersenne_powers_v1
+        print("Testing on {} Mersenne prime numbers".format(len(mersenne_powers)))
+    else:
+        mersenne_powers = mersenne_powers_v2
+        print("Testing on {} Mersenne prime numbers".format(len(mersenne_powers)))
+        print("This test is made on numbers starting with one made up of 687 digits, up to 6987 digits.")
+        print(" Therefore, please be patient.")
+
+    for p in mersenne_powers:
+        print(" \n n = 2^{}-1".format(p))
+        miller_rabin((2 ** p) - 1, k)
+@
+~~~~~
+
+In order to make this algorithm more interactive, I added a menu based "run" function which I think will be very easy to navigate.
+
+~~~~~{.python}
+<<Menu based Run function>>=
+def show_menu():
+    print()
+    print("Please enter ")
+    print(" 1 - to test 15 Mersenne prime numbers")
+    print(" 2 - to test 10 more Mersenne prime numbers (very large numbers)")
+    print(" 3 - to test a number of your choice")
+    print(" 0 - to stop")
+
+def determine_testing_k():
+    print("The tests are performed for k = 3.")
+    want_new_k = int(input("Enter 1 if you want to give a new number of trials, 0 otherwise. \n >>"))
+    if want_new_k == 1:
+        new_k = int(input("Enter new k (natural nonzero) >> "))
+        return new_k
+    return 3
+
+
+def run():
+    while True:
+        show_menu()
+        try:
+            option = int(input("Enter option >> "))
+            if option == 1:
+                k = determine_testing_k()
+                testing(1, k)
+            elif option == 2:
+                k = determine_testing_k()
+                testing(2, k)
+            elif option == 3:
+                n_given = int(input("Give a natural number (n>= 3) of your choice >> "))
+                k_given = int(input("Give a natural nonzero number (k) >> "))
+                print(n_given)
+                miller_rabin(n_given, k_given)
+            elif option == 0:
+                return
+            else:
+                print("Wrong option!")
+        except Exception as e:
+            print(e)
+            print("^^^ this went wrong!!! - TRY AGAIN")
+@
+~~~~~
+
+In the end, this will be the final result:
+
+~~~~~{.python}
+<<*>>= 
+import random
+
+<<Calculating s and t>>
+
+<<Choose a>>
+
+<<Repeated squaring algorithm>>
+
+<<Compute the sequence>>
+
+<<Miller-Rabin algorithm>>
+
+<<Test algorithm>>
+
+<<Menu based Run function>>
+
+run()
+@
+~~~~~
+
