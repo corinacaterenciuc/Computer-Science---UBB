@@ -1,0 +1,33 @@
+8)
+a. Write a predicate to determine if a list has even numbers of elements without counting the elements from
+the list.
+b. Write a predicate to delete first occurrence of the minimum number from a list.
+--------------------------------------------------------------------------------------------------
+
+a. EvenNrElems(l1l2..ln) = 
+	-true, if n=0
+	-false == EvenNrElems(l2l3..ln), otherwise
+
+(tr.ue, EvenNrElems(l2l3..ln) = false) - just for prolog
+
+
+b. 
+min(a,b) = a, if a<b   | b, otherwise
+
+MinimList(l1l2..ln) = 
+	-l1, if n=1
+	-min(l1, MinimList(l2l3..ln)), otherwise
+
+
+DeleteFirst(l1l2..ln, elem) = 
+	-l2l3..ln, if l1 = elem
+	-l1 U DeleteFirst(l2l3..ln, elem), otherwise
+
+
+DeleteFirstMinim(l1l2..ln):
+       DeleteFirst(l1l2..lninimList(l1l2..ln))
+
+
+produce(l1l2..ln, elem)
+	-elem, if n = 0
+	-l1* produce(l2l3..ln, elem), otherwise
