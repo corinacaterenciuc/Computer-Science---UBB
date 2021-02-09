@@ -46,8 +46,8 @@ Representative projects
           :bell:  Systems for Design and Implementation (Java)
       </li>
       <li>
-        <a href="https://github.com/corinacaterenciuc/Computer-Science---UBB/tree/master/semester4/SE">
-          :crystal_ball:  Software Engineering 
+        <a href="https://github.com/corinacaterenciuc/SoftwareEngineering-TeamProject">
+          :crystal_ball:  Software Engineering (Java/JavaScript)
         </a>
       </li>
     </ul>
