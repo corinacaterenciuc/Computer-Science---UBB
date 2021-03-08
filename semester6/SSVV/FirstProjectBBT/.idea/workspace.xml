@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="85f93a24-9fdc-45e4-89cf-1c66dddd5dad" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1pTHbhpJW2S4Vz6Qh3ll5EY6Dhv" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalDependencies" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="85f93a24-9fdc-45e4-89cf-1c66dddd5dad" name="Default Changelist" comment="" />
+      <created>1615200233004</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1615200233004</updated>
+      <workItem from="1615200237450" duration="1459000" />
+      <workItem from="1615201737948" duration="457000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="447" y="78" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1615201129661">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="447" y="78" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1615201129661" />
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1615201700390">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1615201700390" />
+    <state width="1493" height="213" key="GridCell.Tab.0.center" timestamp="1615201700388">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1615201700388" />
+    <state width="1493" height="213" key="GridCell.Tab.0.left" timestamp="1615201700388">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1615201700388" />
+    <state width="1493" height="213" key="GridCell.Tab.0.right" timestamp="1615201700389">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1615201700389" />
+    <state x="190" y="53" key="SettingsEditor" timestamp="1615201770739">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="190" y="53" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1615201770739" />
+    <state x="477" y="244" key="com.intellij.ide.util.TipDialog" timestamp="1615201738654">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="477" y="244" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1615201738654" />
+  </component>
+</project>
